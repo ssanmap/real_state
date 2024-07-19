@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Registro</div>
+        <div class="card-body">
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              <ul>
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="id_username">Username:</label>
+              <input
+                type="text"
+                name="username"
+                maxlength="150"
+                required
+                id="id_username"
+                class="form-control"
+                value="{{ form.username.value|default:'' }}"
+              />
+              <small class="form-text text-muted">
+                Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="id_email">Email address:</label>
+              <input
+                type="email"
+                name="email"
+                required
+                id="id_email"
+                class="form-control"
+                value="{{ form.email.value|default:'' }}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="id_password1">Password:</label>
+              <input
+                type="password"
+                name="password1"
+                required
+                id="id_password1"
+                class="form-control"
+              />
+              <small class="form-text text-muted">
+                Your password must contain at least 8 characters.
+                Your password can’t be too similar to your other personal information.
+                Your password can’t be a commonly used password.
+                Your password can’t be entirely numeric.
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="id_password2">Password confirmation:</label>
+              <input
+                type="password"
+                name="password2"
+                required
+                id="id_password2"
+                class="form-control"
+              />
+              <small class="form-text text-muted">
+                Enter the same password as before, for verification.
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="id_rut">Rut:</label>
+              <input
+                type="text"
+                name="rut"
+                maxlength="9"
+                required
+                id="id_rut"
+                class="form-control"
+                value="{{ form.rut.value|default:'' }}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="id_address">Address:</label>
+              <input
+                type="text"
+                name="address"
+                maxlength="50"
+                required
+                id="id_address"
+                class="form-control"
+                value="{{ form.address.value|default:'' }}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="id_phone">Phone:</label>
+              <input
+                type="text"
+                name="phone"
+                maxlength="50"
+                required
+                id="id_phone"
+                class="form-control"
+                value="{{ form.phone.value|default:'' }}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="id_user_type">User type:</label>
+              <select
+                name="user_type"
+                id="id_user_type"
+                class="form-control"
+              >
+                {% for choice in form.user_type.field.choices %}
+                  <option value="{{ choice.0 }}" {% if choice.0 == form.user_type.value %}selected{% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

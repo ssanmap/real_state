@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Property{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ block.super }}</div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">Nombre</label>
+                            <input type="text" name="name" maxlength="200" required="" id="id_name" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Descripción</label>
+                            <textarea name="description" id="id_description" required="" class="form-control"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_address" class="form-label">Dirección</label>
+                            <input type="text" name="address" maxlength="50" required="" id="id_address" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_constructed_area" class="form-label">Metros Construidos (m²)</label>
+                            <input type="number" name="constructed_area" required="" id="id_constructed_area" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_land_area" class="form-label">Metros Terreno Total (m²)</label>
+                            <input type="number" name="land_area" required="" id="id_land_area" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_num_parking_spaces" class="form-label">Número de Estacionamientos</label>
+                            <input type="number" name="num_parking_spaces" id="id_num_parking_spaces" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_num_bedrooms" class="form-label">Número de Habitaciones</label>
+                            <input type="number" name="num_bedrooms" id="id_num_bedrooms" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_num_bathrooms" class="form-label">Número de Baños</label>
+                            <input type="number" name="num_bathrooms" id="id_num_bathrooms" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_monthly_rent" class="form-label">Precio Mensual</label>
+                            <input type="number" name="monthly_price" required="" id="id_monthly_rent" class="form-control"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_commune" class="form-label">Comuna</label>
+                            <select name="commune" id="id_commune" required="" class="form-control">
+                                {% for commune in form.fields.commune.queryset %}
+                                    <option value="{{ commune.id }}">{{ commune.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_region" class="form-label">Región</label>
+                            <select name="region" id="id_region" required="" class="form-control">
+                                {% for region in form.fields.region.queryset %}
+                                    <option value="{{ region.id }}">{{ region.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_property_type" class="form-label">Tipo de Propiedad</label>
+                            <select name="property_type" id="id_property_type" required="" class="form-control">
+                                {% for property_type in form.fields.property_type.queryset %}
+                                    <option value="{{ property_type.id }}">{{ property_type.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" name="is_rented" id="id_is_rented" class="form-check-input"/>
+                            <label for="id_is_rented" class="form-check-label">Arrendada</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Agregar Propiedad</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

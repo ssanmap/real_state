@@ -1,0 +1,4 @@
+[
+    {"model": "listings.propertytype", "pk": 1, "fields": {"name": "House"}},
+    {"model": "listings.propertytype", "pk": 2, "fields": {"name": "Apartment"}}
+]

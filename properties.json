@@ -1,0 +1,22 @@
+[
+    {
+      "model": "listings.property",
+      "pk": 1,
+      "fields": {
+        "name": "Departamento en Arica",
+        "description": "Un hermoso departamento en el centro de Arica.",
+        "property_type": 1,
+        "commune": 1
+      }
+    },
+    {
+      "model": "listings.property",
+      "pk": 2,
+      "fields": {
+        "name": "Casa en Iquique",
+        "description": "Una amplia casa en Iquique.",
+        "property_type": 2,
+        "commune": 2
+      }
+    }
+  ]

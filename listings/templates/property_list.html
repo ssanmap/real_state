@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Properties{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Propiedades</h2>
+   <!-- Include the search form -->
+   <div class="card mb-4">
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="id_region" class="form-label">Región</label>
+                    {{ form.region }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="id_commune" class="form-label">Comuna</label>
+                    {{ form.commune }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+</div>
+    <div class="row">
+        {% for property in properties %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ property.name }}</h5>
+                    <p class="card-text">{{ property.description }}</p>
+                    <p class="card-text"><strong>Commune:</strong> {{ property.commune.name }}</p>
+                    <p class="card-text"><strong>Type:</strong> {{ property.property_type.name }}</p>
+                    <a href="{% url 'property_detail' property.id %}" class="btn btn-primary">Ver Detalles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

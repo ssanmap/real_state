@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Property{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ block.super }}</div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label">Nombre</label>
+                            <input type="text" name="name" maxlength="200" required="" id="id_name" class="form-control" value="{{ form.name.value }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_description" class="form-label">Descripción</label>
+                            <textarea name="description" id="id_description" required="" class="form-control">{{ form.description.value }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_address" class="form-label">Dirección</label>
+                            <input type="text" name="address" maxlength="50" required="" id="id_address" class="form-control" value="{{ form.address.value }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_constructed_area" class="form-label">Metros Construidos (m²)</label>
+                            <input type="number" name="constructed_area" required="" id="id_constructed_area" class="form-control" value="{{ form.constructed_area.value }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_land_area" class="form-label">Metros Terreno Total (m²)</label>
+                            <input type="number" name="land_area" required="" id="id_land_area" class="form-control" value="{{ form.land_area.value }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_num_parking_spaces" class="form-label">Número de Estacionamientos</label>
+                            <input type="number" name="num_parking_spaces" id="id_num_parking_spaces" class="form-control" value="{{ form.num_parking_spaces.value }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_num_bedrooms" class="form-label">Número de Habitaciones</label>
+                            <input type="number" name="num_bedrooms" id="id_num_bedrooms" class="form-control" value="{{ form.num_bedrooms.value }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_num_bathrooms" class="form-label">Número de Baños</label>
+                            <input type="number" name="num_bathrooms" id="id_num_bathrooms" class="form-control" value="{{ form.num_bathrooms.value }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_monthly_rent" class="form-label">Precio Mensual</label>
+                            <input type="number" name="monthly_price" required="" id="id_monthly_rent" class="form-control" value="{{ form.monthly_price.value }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_commune" class="form-label">Comuna</label>
+                            <select name="commune" id="id_commune" required="" class="form-select">
+                                {% for commune in form.commune.field.queryset %}
+                                    <option value="{{ commune.id }}" {% if form.commune.value == commune.id %}selected{% endif %}>{{ commune.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_region" class="form-label">Región</label>
+                            <select name="region" id="id_region" required="" class="form-select">
+                                {% for region in form.region.field.queryset %}
+                                    <option value="{{ region.id }}" {% if form.region.value == region.id %}selected{% endif %}>{{ region.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_property_type" class="form-label">Tipo de Propiedad</label>
+                            <select name="property_type" id="id_property_type" required="" class="form-select">
+                                {% for property_type in form.property_type.field.queryset %}
+                                    <option value="{{ property_type.id }}" {% if form.property_type.value == property_type.id %}selected{% endif %}>{{ property_type.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" name="is_rented" id="id_is_rented" class="form-check-input" {% if form.is_rented.value %}checked{% endif %}/>
+                            <label for="id_is_rented" class="form-check-label">Arrendada</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

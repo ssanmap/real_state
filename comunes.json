@@ -1,0 +1,4 @@
+[
+    {"model": "listings.commune", "pk": 1, "fields": {"name": "Santiago", "region": 1}},
+    {"model": "listings.commune", "pk": 2, "fields": {"name": "Viña del Mar", "region": 2}}
+]

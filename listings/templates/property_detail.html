@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles de Propiedad{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>{{ property.name }}</h2>
+            <p>{{ property.description }}</p>
+            <p><strong>Dirección:</strong> {{ property.address }}</p>
+            <p><strong>Área construida:</strong> {{ property.constructed_area }} m²</p>
+            <p><strong>Área del terreno:</strong> {{ property.land_area }} m²</p>
+            <p><strong>Número de estacionamientos:</strong> {{ property.num_parking_spaces }}</p>
+            <p><strong>Número de habitaciones:</strong> {{ property.num_bedrooms }}</p>
+            <p><strong>Número de baños:</strong> {{ property.num_bathrooms }}</p>
+            <p><strong>Precio mensual:</strong> ${{ property.monthly_price }}</p>
+            <p><strong>Comuna:</strong> {{ property.commune.name }}</p>
+            <p><strong>Región:</strong> {{ property.region.name }}</p>
+            <p><strong>Tipo de Propiedad:</strong> {{ property.property_type.name }}</p>
+            <p><strong>Arrendada:</strong> {% if property.is_rented %}Sí{% else %}No{% endif %}</p>
+
+            <a href="{% url 'edit_property' property.id %}" class="btn btn-primary">Editar</a>
+            <form action="{% url 'delete_property' property.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Bienes Raíces{% endblock %}
+
+{% block content %}
+<div class="jumbotron mt-4">
+    <h1 class="display-4">Encuentra tu próximo hogar</h1>
+    <p class="lead">Descubre una variedad de propiedades disponibles para arriendo en todo Chile.</p>
+    <hr class="my-4">
+    <p>Explora nuestras ofertas y encuentra el lugar perfecto para ti.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'property_list' %}" role="button">Ver Propiedades</a>
+</div>
+
+
+
+<div class="container mt-4">
+    <h2>Para Arrendadores</h2>
+    <p>Si eres un arrendador, puedes agregar tus propiedades a nuestros listados.</p>
+    <a class="btn btn-success btn-lg" href="{% url 'add_property' %}" role="button">Agregar Nueva Propiedad</a>
+</div>
+{% endblock %}

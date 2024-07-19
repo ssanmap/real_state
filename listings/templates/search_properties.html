@@ -1,0 +1,24 @@
+<!-- templates/search_properties.html -->
+{% extends 'base.html' %}
+
+{% block title %}Search Properties{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Search Properties</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if properties %}
+        <h3>Search Results:</h3>
+        <ul>
+            {% for property in properties %}
+                <li>{{ property.name }} - {{ property.address }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

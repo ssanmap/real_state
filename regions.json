@@ -1,0 +1,18 @@
+[
+    {"model": "listings.region", "pk": 1, "fields": {"name": "Arica y Parinacota"}},
+    {"model": "listings.region", "pk": 2, "fields": {"name": "Tarapacá"}},
+    {"model": "listings.region", "pk": 3, "fields": {"name": "Antofagasta"}},
+    {"model": "listings.region", "pk": 4, "fields": {"name": "Atacama"}},
+    {"model": "listings.region", "pk": 5, "fields": {"name": "Coquimbo"}},
+    {"model": "listings.region", "pk": 6, "fields": {"name": "Valparaíso"}},
+    {"model": "listings.region", "pk": 7, "fields": {"name": "Región del Libertador General Bernardo O'Higgins"}},
+    {"model": "listings.region", "pk": 8, "fields": {"name": "Maule"}},
+    {"model": "listings.region", "pk": 9, "fields": {"name": "Ñuble"}},
+    {"model": "listings.region", "pk": 10, "fields": {"name": "Biobío"}},
+    {"model": "listings.region", "pk": 11, "fields": {"name": "La Araucanía"}},
+    {"model": "listings.region", "pk": 12, "fields": {"name": "Los Ríos"}},
+    {"model": "listings.region", "pk": 13, "fields": {"name": "Los Lagos"}},
+    {"model": "listings.region", "pk": 14, "fields": {"name": "Aysén del General Carlos Ibáñez del Campo"}},
+    {"model": "listings.region", "pk": 15, "fields": {"name": "Magallanes y de la Antártica Chilena"}},
+    {"model": "listings.region", "pk": 16, "fields": {"name": "Región Metropolitana de Santiago"}}
+]
