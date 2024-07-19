@@ -58,3 +58,12 @@ class PropertySearchForm(forms.Form):
         required=False,
         widget=forms.Select(attrs={'class': 'form-select'})
     )
+
+    def search(self):
+        properties = Property.objects.all()
+        if self.is_valid():
+            if self.cleaned_data['region']:
+                properties = properties.filter(region=self.cleaned_data['region'])
+            if self.cleaned_data['commune']:
+                properties = properties.filter(commune=self.cleaned_data['commune'])
+        return properties

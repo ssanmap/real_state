@@ -11,17 +11,24 @@ def home(request):
 
 
 def property_list(request):
-    form = PropertySearchForm()
-    properties = Property.objects.all()
-
     if request.method == 'POST':
         form = PropertySearchForm(request.POST)
         if form.is_valid():
-            region = form.cleaned_data['region']
-            commune = form.cleaned_data['commune']
-            properties = properties.filter(region=region, commune=commune)
+            properties = form.search()
+        else:
+            properties = Property.objects.all()
+    else:
+        form = PropertySearchForm()
+        properties = Property.objects.all()
 
-    return render(request, 'property_list.html', {'form': form, 'properties': properties})
+    rented_properties = properties.filter(rented=True)
+    available_properties = properties.filter(rented=False)
+
+    return render(request, 'property_list.html', {
+        'form': form,
+        'rented_properties': rented_properties,
+        'available_properties': available_properties
+    })
 
 def property_detail(request, id):
     property = get_object_or_404(Property, id=id)
@@ -48,13 +55,20 @@ def add_property(request):
 @login_required
 def edit_property(request, property_id):
     property = get_object_or_404(Property, id=property_id)
+    
     if request.method == 'POST':
         form = PropertyForm(request.POST, instance=property)
+        print("POST data:", request.POST)
         if form.is_valid():
             form.save()
+            print("Property updated successfully.")
             return redirect('property_list')
+        else:
+            print("Form is not valid:", form.errors)
     else:
         form = PropertyForm(instance=property)
+        print("Form initialized with property data.")
+    
     return render(request, 'edit_property.html', {'form': form})
 
 @login_required

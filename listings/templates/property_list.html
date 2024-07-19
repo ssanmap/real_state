@@ -24,20 +24,47 @@
         </form>
     </div>
 </div>
-    <div class="row">
-        {% for property in properties %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ property.name }}</h5>
-                    <p class="card-text">{{ property.description }}</p>
-                    <p class="card-text"><strong>Commune:</strong> {{ property.commune.name }}</p>
-                    <p class="card-text"><strong>Type:</strong> {{ property.property_type.name }}</p>
-                    <a href="{% url 'property_detail' property.id %}" class="btn btn-primary">Ver Detalles</a>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-available-tab" data-toggle="tab" data-target="#nav-available" type="button" role="tab" aria-controls="nav-available" aria-selected="true">Disponibles</button>
+      <button class="nav-link" id="nav-rented-tab" data-toggle="tab" data-target="#nav-rented" type="button" role="tab" aria-controls="nav-rented" aria-selected="false">Arrendadas</button>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-available" role="tabpanel" aria-labelledby="nav-available-tab">
+        <div class="row mt-4">
+            {% for property in available_properties %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ property.name }}</h5>
+                        <p class="card-text">{{ property.description }}</p>
+                        <p class="card-text"><strong>Comuna:</strong> {{ property.commune.name }}</p>
+                        <p class="card-text"><strong>Tipo:</strong> {{ property.property_type.name }}</p>
+                        <a href="{% url 'property_detail' property.id %}" class="btn btn-primary">Ver Detalles</a>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
+    <div class="tab-pane fade" id="nav-rented" role="tabpanel" aria-labelledby="nav-rented-tab">
+        <div class="row mt-4">
+            {% for property in rented_properties %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ property.name }}</h5>
+                        <p class="card-text">{{ property.description }}</p>
+                        <p class="card-text"><strong>Comuna:</strong> {{ property.commune.name }}</p>
+                        <p class="card-text"><strong>Tipo:</strong> {{ property.property_type.name }}</p>
+                        <a href="{% url 'property_detail' property.id %}" class="btn btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

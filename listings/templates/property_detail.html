@@ -18,7 +18,7 @@
             <p><strong>Comuna:</strong> {{ property.commune.name }}</p>
             <p><strong>Región:</strong> {{ property.region.name }}</p>
             <p><strong>Tipo de Propiedad:</strong> {{ property.property_type.name }}</p>
-            <p><strong>Arrendada:</strong> {% if property.is_rented %}Sí{% else %}No{% endif %}</p>
+            <p><strong>Arrendada:</strong> {% if property.rented %}Sí{% else %}No{% endif %}</p>
 
             <a href="{% url 'edit_property' property.id %}" class="btn btn-primary">Editar</a>
             <form action="{% url 'delete_property' property.id %}" method="post" style="display:inline;">

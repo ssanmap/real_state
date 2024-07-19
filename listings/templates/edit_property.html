@@ -72,8 +72,8 @@
                             </select>
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" name="is_rented" id="id_is_rented" class="form-check-input" {% if form.is_rented.value %}checked{% endif %}/>
-                            <label for="id_is_rented" class="form-check-label">Arrendada</label>
+                            <input type="checkbox" name="rented" id="id_rented" class="form-check-input" {% if form.rented.value %}checked{% endif %}/>
+                            <label for="id_rented" class="form-check-label">Arrendada</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
@@ -81,5 +81,15 @@
             </div>
         </div>
     </div>
+
+    {% if form.errors %}
+        <div class="alert alert-danger mt-3">
+            <ul>
+            {% for field, errors in form.errors.items %}
+                <li>{{ field }}: {{ errors|striptags }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
